@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Net 30 vs Net 60 Cost Calculator | Payment Terms Calculator
+    </title>
+
+    <meta
+        name="description"
+        content="Compare Net 30, Net 60, Net 90 and custom payment terms. Calculate financing cost, annual impact, early-payment discount break-even points, and whether a discount is worth it."
+    >
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Add canonical URL after deployment -->
+
+    <meta
+        property="og:title"
+        content="Net 30 vs Net 60 Cost Calculator"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate the real cost of longer payment terms and compare early-payment discounts."
+    >
+
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="page-container">
+
+        <div class="brand">
+            <span class="brand-mark">PTT</span>
+            <span class="brand-name">Pay Term Tools</span>
+        </div>
+
+        <h1>Net 30 vs Net 60 Cost Calculator</h1>
+
+        <p class="subtitle">
+            Calculate the real cost of waiting longer to get paid.
+        </p>
+
+        <div class="calculator-intro">
+            <p>
+                This calculator helps you compare the financial impact of different
+                payment terms, such as Net 30, Net 60, or Net 90.
+            </p>
+
+            <p>
+                Enter your invoice amount, payment terms, and annual cost of capital
+                to estimate how much waiting longer for payment costs your business.
+                You can also enter an early-payment discount to see whether accepting
+                or offering it is financially worthwhile.
+            </p>
+        </div>
+
+        <div class="field">
+            <label for="currency">Currency</label>
+
+            <select id="currency">
+                <option value="€" selected>EUR (€)</option>
+                <option value="$">USD ($)</option>
+                <option value="£">GBP (£)</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="invoiceAmount">Invoice amount</label>
+
+            <input
+                type="number"
+                id="invoiceAmount"
+                value="10000"
+                min="0"
+                step="100"
+            >
+        </div>
+
+        <div class="field">
+            <label for="currentTerms">
+                Current payment terms
+            </label>
+
+            <select id="currentTerms">
+                <option value="15">Net 15</option>
+                <option value="30">Net 30</option>
+                <option value="45">Net 45</option>
+                <option value="60" selected>Net 60</option>
+                <option value="90">Net 90</option>
+                <option value="custom">Custom</option>
+            </select>
+
+            <input
+                type="number"
+                id="currentTermsCustom"
+                placeholder="Enter number of days"
+                min="0"
+                style="display: none; margin-top: 10px;"
+            >
+        </div>
+
+        <div class="field">
+            <label for="alternativeTerms">
+                Alternative payment terms
+            </label>
+
+            <select id="alternativeTerms">
+                <option value="15">Net 15</option>
+                <option value="30" selected>Net 30</option>
+                <option value="45">Net 45</option>
+                <option value="60">Net 60</option>
+                <option value="90">Net 90</option>
+                <option value="custom">Custom</option>
+            </select>
+
+            <input
+                type="number"
+                id="alternativeTermsCustom"
+                placeholder="Enter number of days"
+                min="0"
+                style="display: none; margin-top: 10px;"
+            >
+        </div>
+
+        <div class="field">
+            <label for="capitalCost">
+                Annual cost of capital (%)
+
+                <span class="tooltip">
+                    ?
+                    <span class="tooltip-text">
+                        Your estimated annual cost of financing or using capital.
+                        For example, enter 8 if your annual cost of capital is 8%.
+                    </span>
+                </span>
+            </label>
+
+            <input
+                type="number"
+                id="capitalCost"
+                value="8"
+                min="0"
+                step="0.1"
+            >
+        </div>
+
+        <div class="field">
+            <label for="invoicesPerYear">
+                Invoices per year
+            </label>
+
+            <input
+                type="number"
+                id="invoicesPerYear"
+                value="12"
+                min="1"
+                step="1"
+            >
+        </div>
+
+        <div class="field">
+            <label for="offeredDiscount">
+                Early-payment discount offered (%)
+            </label>
+
+            <input
+                type="number"
+                id="offeredDiscount"
+                value="2"
+                min="0"
+                step="0.1"
+            >
+        </div>
+
+        <section id="results">
+
+            <div class="result">
+                <span>Payment difference</span>
+                <strong id="daysResult">30 days</strong>
+            </div>
+
+            <div class="result">
+                <span>Cost per invoice</span>
+                <strong id="invoiceCostResult">€65.75</strong>
+            </div>
+
+            <div class="result highlight-result">
+                <span>Annual cost</span>
+                <strong id="annualCostResult">€789.04</strong>
+            </div>
+
+            <div class="result">
+                <span>
+                    Equivalent discount
+
+                    <span class="tooltip">
+                        ?
+                        <span class="tooltip-text">
+                            The percentage of the invoice value represented by the financial
+                            benefit or cost of the difference in payment timing.
+                        </span>
+                    </span>
+                </span>
+                <strong id="discountResult">0.66%</strong>
+            </div>
+
+            <div class="result discount-highlight">
+                <span>
+                    Maximum worthwhile early-payment discount
+
+                    <span class="tooltip">
+                        ?
+                        <span class="tooltip-text">
+                            The estimated break-even discount. A larger discount would cost
+                            more than the financing benefit of receiving payment earlier.
+                        </span>
+                    </span>
+                </span>
+                <strong id="maxDiscountResult">0.66%</strong>
+            </div>
+
+            <div class="result">
+                <span>Discount cost</span>
+                <strong id="discountCostResult">€0.00</strong>
+            </div>
+
+            <div class="result">
+                <span>Net impact per invoice</span>
+                <strong id="netImpactResult">€0.00</strong>
+            </div>
+
+            <div class="result verdict-row">
+                <span>Verdict</span>
+                <strong id="verdictResult">—</strong>
+            </div>
+
+            <div id="summary" class="summary-box">
+                <h2>What this means</h2>
+                <p id="summaryText"></p>
+            </div>
+
+        </section>
+            <section class="how-it-works">
+
+                <h2>How the calculation works</h2>
+
+                <p>
+                    The calculator estimates the financial cost of waiting longer to get paid
+                    by applying your annual cost of capital to the number of additional days
+                    your cash is tied up.
+                </p>
+
+                <div class="formula-box">
+                    <strong>Cost per invoice</strong>
+
+                    <span>
+                        Invoice amount × Annual cost of capital × (Days difference ÷ 365)
+                    </span>
+                </div>
+
+                <p>
+                    For example, a €10,000 invoice moving from Net 60 to Net 30 with an
+                    annual cost of capital of 8% represents approximately €65.75 in financing
+                    value per invoice.
+                </p>
+
+                <p>
+                    If you enter an early-payment discount, the calculator compares the cost
+                    of that discount with the estimated financing benefit of being paid earlier.
+                </p>
+
+            </section>
+
+            <section class="faq">
+
+                <h2>Frequently asked questions</h2>
+
+                <div class="faq-item">
+                    <h3>What is the difference between Net 30 and Net 60?</h3>
+
+                    <p>
+                        Net 30 means an invoice is due 30 days after the invoice date,
+                        while Net 60 gives the customer 60 days to pay. For the seller,
+                        Net 60 therefore means waiting an additional 30 days to receive
+                        the same amount of cash.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How much does Net 60 cost compared with Net 30?</h3>
+
+                    <p>
+                        The cost depends on the invoice amount and your cost of capital.
+                        For example, on a €10,000 invoice with an 8% annual cost of capital,
+                        waiting an additional 30 days represents approximately €65.75
+                        in financing cost.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How do you calculate the cost of payment terms?</h3>
+
+                    <p>
+                        A simple estimate is calculated by multiplying the invoice amount
+                        by the annual cost of capital and by the difference in payment days
+                        divided by 365.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Is an early-payment discount worth it?</h3>
+
+                    <p>
+                        It depends on the size of the discount and the value of receiving
+                        the money earlier. If the discount costs more than the estimated
+                        financing benefit, it may not be financially worthwhile based on
+                        financing cost alone.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Is a 2% early-payment discount worth it?</h3>
+
+                    <p>
+                        A 2% early-payment discount means giving up 2% of the invoice value
+                        in exchange for earlier payment. On a €10,000 invoice, that discount
+                        costs €200. You can compare that cost with the financing benefit
+                        using the calculator above.
+                    </p>
+                </div>
+
+            </section>
+
+            <p class="disclaimer">
+                This calculator provides an estimate for informational purposes only.
+                Actual financing costs may vary depending on your business, borrowing costs,
+                cash-flow needs, taxes, fees, and payment behavior.
+            </p>
+    </main>
+
+    <script src="script.js"></script>
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+        "@type": "Question",
+        "name": "What is the difference between Net 30 and Net 60?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Net 30 means an invoice is due 30 days after the invoice date, while Net 60 gives the customer 60 days to pay. For the seller, Net 60 means waiting an additional 30 days to receive the same amount of cash."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "How much does Net 60 cost compared with Net 30?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cost depends on the invoice amount and your cost of capital. For example, on a €10,000 invoice with an 8% annual cost of capital, waiting an additional 30 days represents approximately €65.75 in financing cost."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "How do you calculate the cost of payment terms?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A simple estimate is calculated by multiplying the invoice amount by the annual cost of capital and by the difference in payment days divided by 365."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "Is an early-payment discount worth it?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the size of the discount and the value of receiving the money earlier. If the discount costs more than the estimated financing benefit, it may not be financially worthwhile based on financing cost alone."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "Is a 2% early-payment discount worth it?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On a €10,000 invoice, a 2% discount costs €200. Whether it is worthwhile depends on whether the financing benefit of receiving payment earlier is greater than that €200 cost."
+        }
+        }
+    ]
+    }
+    </script>
+
+</body>
+
+</html>

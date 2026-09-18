@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice Due Date Calculator | Net 7, 30, 60 &amp; 90</title>
+    <meta name="description" content="Free invoice due date calculator for Net 7, 15, 30, 45, 60, 90 and custom payment terms. Calculate the exact payment due date from an invoice date.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ptt.machinbiduledu00.workers.dev/invoice-due-date-calculator/">
+
+    <meta property="og:title" content="Invoice Due Date Calculator | Net 7, 30, 60 &amp; 90">
+    <meta property="og:description" content="Calculate the exact invoice payment due date for standard and custom payment terms.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ptt.machinbiduledu00.workers.dev/invoice-due-date-calculator/">
+    <meta property="og:site_name" content="PTT">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="invoice-due-date.css">
+</head>
+
+<body class="invoice-due-date-page">
+    <main class="page-container">
+        <div class="brand">
+            <span class="brand-mark">PTT</span>
+            <span class="brand-name">Pay Term Tools</span>
+        </div>
+
+        <h1>Invoice Due Date Calculator</h1>
+        <p class="subtitle">Calculate the exact payment due date for Net 7, Net 15, Net 30, Net 45, Net 60, Net 90 and custom payment terms.</p>
+
+        <div class="calculator-intro">
+            <p>Enter an invoice date and payment term to find the calendar date payment is due. The invoice date is treated as day 0.</p>
+        </div>
+
+        <div class="field">
+            <label for="invoiceDate">Invoice date</label>
+            <input type="date" id="invoiceDate">
+        </div>
+
+        <div class="field">
+            <label for="paymentTerms">Payment terms</label>
+            <select id="paymentTerms">
+                <option value="0">Due on Receipt</option>
+                <option value="7">Net 7</option>
+                <option value="14">Net 14</option>
+                <option value="15">Net 15</option>
+                <option value="30" selected>Net 30</option>
+                <option value="45">Net 45</option>
+                <option value="60">Net 60</option>
+                <option value="90">Net 90</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+
+        <div class="field" id="customDaysField" hidden>
+            <label for="customDays">Custom days</label>
+            <input type="number" id="customDays" min="1" step="1" inputmode="numeric" placeholder="Enter number of calendar days">
+        </div>
+
+        <section id="results" class="due-results" aria-live="polite">
+            <div class="result due-date-result">
+                <span>Payment due date</span>
+                <strong id="dueDateResult">—</strong>
+            </div>
+            <div class="result">
+                <span>Selected payment terms</span>
+                <strong id="termsResult">Net 30</strong>
+            </div>
+            <div class="result">
+                <span>Number of calendar days</span>
+                <strong id="daysResult">30 calendar days</strong>
+            </div>
+            <button type="button" id="copyResult">Copy Result</button>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How invoice due dates work</h2>
+            <p>An invoice due date is the date by which payment is expected under the agreed payment terms. Net 30 means payment is due 30 calendar days after the invoice date.</p>
+            <p>Standard Net terms normally refer to calendar days unless your agreement says otherwise. Showing the actual due date on an invoice helps avoid ambiguity for both parties.</p>
+        </section>
+
+        <section class="faq">
+            <h2>Frequently asked questions</h2>
+
+            <div class="faq-item">
+                <h3>What is an invoice due date?</h3>
+                <p>It is the date by which a customer is expected to pay an invoice under the agreed payment terms.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I calculate a Net 30 due date?</h3>
+                <p>Add 30 calendar days to the invoice date. The invoice date itself is day 0.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Does Net 30 mean 30 calendar days?</h3>
+                <p>Usually, yes. If an agreement requires business days or another convention, follow that agreement instead.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I calculate Net 60 or Net 90?</h3>
+                <p>Yes. Select Net 60 or Net 90 from the payment terms list.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I use a custom payment term?</h3>
+                <p>Yes. Select Custom and enter any positive whole number of calendar days.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Does the calculator account for weekends or holidays?</h3>
+                <p>No. It uses normal calendar-day arithmetic and does not move dates that fall on weekends or holidays.</p>
+            </div>
+        </section>
+
+        <p class="disclaimer">This calculator is for informational purposes. Check your contract or applicable terms if a different payment-date convention applies.</p>
+
+        <nav class="calculator-navigation" aria-label="Other calculators">
+            <span>Other calculators</span>
+            <a href="/index.html/">Net 30 Calculator</a>
+        </nav>
+    </main>
+
+    <script src="invoice-due-date.js"></script>
+</body>
+
+</html>

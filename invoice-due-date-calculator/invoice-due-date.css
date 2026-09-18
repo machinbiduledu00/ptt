@@ -1,0 +1,49 @@
+.invoice-due-date-page .page-container::before {
+    background: linear-gradient(90deg, #0f766e 0%, #14b8a6 50%, #0ea5e9 100%);
+}
+
+.invoice-due-date-page .brand-mark {
+    background: linear-gradient(135deg, #0f766e, #0284c7);
+}
+
+.invoice-due-date-page input:focus,
+.invoice-due-date-page select:focus {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.18);
+}
+
+.invoice-due-date-page button {
+    grid-column: 1 / -1;
+    background: #0f766e;
+}
+
+.invoice-due-date-page button:hover {
+    background: #0d625c;
+}
+
+.invoice-due-date-page .due-date-result {
+    background: #0b2528;
+    border-color: #0f766e;
+}
+
+.invoice-due-date-page .due-date-result span {
+    color: #99f6e4;
+}
+
+.invoice-due-date-page .due-date-result strong {
+    color: #ccfbf1;
+}
+
+.invoice-due-date-page .due-results {
+    margin-top: 32px;
+}
+
+.invoice-due-date-page #customDaysField[hidden] {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    .invoice-due-date-page button {
+        grid-column: auto;
+    }
+}
